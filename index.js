@@ -1,6 +1,7 @@
 const express = require("express");
 const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 global.SENT_EMAILS = [];
 var PORT = process.env.PORT || 3128;
 
@@ -88,6 +89,7 @@ function isEmailSentAlready(emailBody) {
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cors());
 app.use('/api', router);
 
 app.listen(PORT, () => console.log(`Mailing server is up on port# : ${PORT}!`))
